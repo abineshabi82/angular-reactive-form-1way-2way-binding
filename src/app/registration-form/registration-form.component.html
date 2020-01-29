@@ -1,0 +1,294 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10 card">
+    <form [formGroup]="form" class="form-horizontal" role="form">
+      <h2>Registration</h2>
+      <div class="form-group">
+        <label for="firstName" class="col-sm-3 control-label"
+          >First Name*</label
+        >
+        <div class="col-sm-9">
+          <input
+            formControlName="firstName"
+            type="text"
+            id="firstName"
+            placeholder="First Name"
+            ngModel
+            class="form-control validate"
+            [ngClass]="{
+              'is-invalid':
+                form.controls.firstName.touched &&
+                form.controls.firstName.valid === false
+            }"
+            autofocus
+          />
+          <span
+            class="warning"
+            *ngIf="
+              form.controls.firstName.touched &&
+              form.controls.firstName.valid === false
+            "
+          >
+            minimal length should be 3 and don't use number characters.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName" class="col-sm-3 control-label">Last Name*</label>
+        <div class="col-sm-9">
+          <input
+            formControlName="lastName"
+            type="text"
+            id="lastName"
+            placeholder="Last Name"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                form.controls.lastName.touched &&
+                form.controls.lastName.valid === false
+            }"
+            autofocus
+          />
+          <span
+            class="warning"
+            *ngIf="
+              form.controls.lastName.touched &&
+              form.controls.lastName.valid === false
+            "
+          >
+            minimal length should be 3 and don't use number characters.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">Email* </label>
+        <div class="col-sm-9">
+          <input
+            formControlName="email"
+            type="email"
+            id="email"
+            placeholder="example@virtusa.com"
+            class="form-control"
+            name="email"
+            [ngClass]="{
+              'is-invalid':
+                form.controls.email.touched &&
+                form.controls.email.valid === false
+            }"
+          />
+          <span
+            class="warning"
+            *ngIf="
+              form.controls.email.touched && form.controls.email.valid === false
+            "
+          >
+            enter valid email
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Password*</label>
+        <div class="col-sm-9">
+          <input
+            formControlName="password"
+            type="password"
+            id="password"
+            placeholder="Password"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                form.controls.password.touched &&
+                form.controls.password.valid === false
+            }"
+          />
+          <span
+            class="warning"
+            *ngIf="
+              form.controls.password.touched &&
+              form.controls.password.valid === false
+            "
+          >
+            minimal length should be 8.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label"
+          >Confirm Password*</label
+        >
+        <div class="col-sm-9">
+          <input
+            formControlName="confirmPassword"
+            type="password"
+            id="password1"
+            placeholder="Password"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                form.controls.confirmPassword.touched &&
+                form.controls.confirmPassword.valid === false
+            }"
+          />
+          <span
+            class="warning"
+            *ngIf="
+              form.controls.confirmPassword.touched &&
+              form.controls.confirmPassword.valid === false
+            "
+          >
+            minimal length should be 8.
+          </span>
+          <span
+            class="warning"
+            *ngIf="
+              form.controls.confirmPassword.touched &&
+              form.value.confirmPassword !== form.value.password
+            "
+          >
+            password doesn't match.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="birthDate" class="col-sm-3 control-label"
+          >Date of Birth*</label
+        >
+        <div class="col-sm-9">
+          <input
+            formControlName="dob"
+            type="date"
+            id="birthDate"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                form.controls.dob.touched && form.controls.dob.valid === false
+            }"
+          />
+          <span
+            class="warning"
+            *ngIf="
+              form.controls.dob.touched && form.controls.dob.valid === false
+            "
+          >
+            Required.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber" class="col-sm-3 control-label"
+          >Phone number*
+        </label>
+        <div class="col-sm-9">
+          <input
+            formControlName="phoneNumber"
+            type="phoneNumber"
+            id="phoneNumber"
+            placeholder="Phone number"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                form.controls.phoneNumber.touched &&
+                form.controls.phoneNumber.valid === false
+            }"
+          />
+          <span class="help-block"
+            >Your phone number won't be disclosed anywhere
+          </span>
+          <span
+            class="warning"
+            *ngIf="
+              form.controls.phoneNumber.touched &&
+              form.controls.phoneNumber.valid === false
+            "
+          >
+            length should be 10.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="country" class="col-sm-3 control-label">Country*</label>
+        <div class="col-sm-9">
+          <select
+            #selectedCountry
+            (click)="setCountry(selectedCountry.value)"
+            formControlName="country"
+          >
+            <option>select your country</option>
+            <option
+              *ngFor="let obj of countryState"
+              [value]="obj.countryName"
+              >{{ obj.countryName }}</option
+            >
+          </select>
+          <span class="warning" *ngIf="form.controls.country.valid === false">
+            select your country
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="state" class="col-sm-3 control-label">State*</label>
+        <div class="col-sm-9">
+          <select #selectedState formControlName="state">
+            <option>select your state</option>
+            <option *ngFor="let obj2 of stateFilter[0]" [value]="obj2">{{
+              obj2
+            }}</option>
+          </select>
+          <span class="warning" *ngIf="form.controls.state.valid === false">
+            select your state
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Gender*</label>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input
+                  type="radio"
+                  id="femaleRadio"
+                  value="Female"
+                  formControlName="gender"
+                />Female
+              </label>
+            </div>
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input
+                  type="radio"
+                  id="maleRadio"
+                  value="Male"
+                  formControlName="gender"
+                />Male
+              </label>
+            </div>
+            <span
+              class="warning"
+              *ngIf="
+                form.controls.gender.touched &&
+                form.controls.gender.valid === false
+              "
+            >
+              Required.
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- /.form-group -->
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <span class="help-block">*Required fields</span>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="!form.valid"
+        (click)="onSubmit()"
+        class="btn btn-primary btn-block"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<h2>Example for Directory ngif,ngfor in toggle manner:</h2>
+<span *ngFor="let customer of customers">
+  <div class="dropdown" *ngIf="customer.acctype == 'savings'">
+    Name :
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      data-toggle="dropdown"
+    >
+      {{ customer.name }} <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li>{{ customer.accno }}</li>
+    </ul>
+  </div>
+  <br />
+</span>
+<h2>Example for oneway binding view to component:</h2>
+<select
+  class="btn btn-info dropdown-toggle"
+  #mySelect
+  (change)="onOptionsSelected(mySelect.value)"
+>
+  <option class="option" value="a">select animal</option>
+  <option class="option" value="cat">Cat</option>
+  <option class="option" value="dog">Dog</option>
+  <option class="option" value="mouse">Mouse</option>
+</select>
+<img [src]="imageUrl" alt="not loaded" width="500" height="300" />
+<app-two-way-binding></app-two-way-binding><br />
+
+<h2>Example for Life Cycle Hooks with Form validation:</h2>
+<button class="btn btn-primary" type="button" (click)="enableForm()">
+  show register form
+</button>
+<app-registration-form
+  (outData)="show($event)"
+  *ngIf="validForm"
+></app-registration-form>
+{{ form.value | json }}
+<app-dynamic></app-dynamic>

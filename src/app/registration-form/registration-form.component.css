@@ -1,0 +1,6 @@
+.warning{
+color: chocolate;
+}
+.is-invalid{
+    border-color:red;
+}
